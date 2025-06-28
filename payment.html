@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Payment Page</title>
+  <style>
+    body {
+      background: #f0f4f8;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .payment-box {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .success-message {
+      display: none;
+      color: green;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="payment-box">
+        <h2>Enter Payment Details</h2>
+        <input type="text" id="account" placeholder="Enter Your Card Number"><br>
+        <input type="password" id="pin" placeholder="PIN"><br>
+        <button onclick="makePayment()">Pay</button>
+        <p class="success-message" id="success" style="display:none;"> Payment Successful! You are enrolled.</p>
+      </div>
+      
+      <script>
+        function makePayment() {
+          const acc = document.getElementById('account').value.trim();
+          const pin = document.getElementById('pin').value.trim();
+          
+          const isCardValid = /^[0-9]{16}$/.test(acc); 
+          const isPinValid = /^[0-9]{4}$/.test(pin);    
+          if (!acc || !pin) {
+            alert('Please fill in all fields!');
+          } else if (!isCardValid) {
+            alert('Card number must be 16 digits.');
+          } else if (!isPinValid) {
+            alert('PIN must be 4 digits.');
+          } else {
+            document.getElementById('success').style.display = 'block';
+          }
+        }
+      </script>
+
+</body>
+</html>
